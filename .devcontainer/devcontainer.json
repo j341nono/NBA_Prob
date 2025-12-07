@@ -1,0 +1,25 @@
+// .devcontainer/devcontainer.json
+{
+  "name": "My App Development",
+  "dockerComposeFile": "../docker-compose.yml",
+  "service": "backend", // デフォルトで開くコンテナ（backendにしておきます）
+  "workspaceFolder": "/app",
+  
+  // VS Codeに入れたい拡張機能
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "charliermarsh.ruff", // Python linter
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode"
+      ]
+    }
+  },
+  
+  // 起動時にfrontendなど他のコンテナも一緒に立ち上げる設定
+  "runServices": ["backend", "frontend"],
+  
+  // コンテナ終了時の挙動
+  "shutdownAction": "stopCompose"
+}

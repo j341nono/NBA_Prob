@@ -1,0 +1,19 @@
+# docker-compose.yml
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend:/app  # ホストのbackendフォルダをコンテナ内の/appに同期
+    ports:
+      - "8000:8000"     # FastAPIなど用
+    tty: true
+
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/app # ホストのfrontendフォルダをコンテナ内の/appに同期
+    ports:
+      - "3000:3000"     # Next.js用
+    environment:
+      - WATCHPACK_POLLING=true # Windows/Macでのファイル検知を確実にする設定
+    tty: true
